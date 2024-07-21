@@ -23,11 +23,11 @@ final class ProductVC: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         productVM.getData()
         setupView()
         setupConstraints()
         setupTableViewProtocols()
+        setupNavBar()
     }
 }
 //MARK: - Private methods
@@ -46,6 +46,10 @@ private extension ProductVC {
     }
     func setupTableViewProtocols() {
         productTable.dataSource = self
+        productTable.delegate = self
+    }
+    func setupNavBar() {
+        title = "Products"
     }
 }
 //MARK: - UITableViewDataSource
@@ -55,11 +59,20 @@ extension ProductVC: UITableViewDataSource {
             return UITableViewCell()
         }
         let productKey = Array(productVM.products.keys.sorted())[indexPath.row]
-        let productValue = productVM.products[productKey] ?? .zero
+        let productValue = productVM.products[productKey]?.count ?? .zero
         cell.configureCell(showDisclosureType: true, primaryText: productKey, secondaryText: productValue)
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         productVM.products.count
+    }
+}
+//MARK: - UITableViewDelegate
+extension ProductVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let subject = Array(productVM.products.keys.sorted())[indexPath.row]
+        let vm = TransactionsVM(productVM: productVM, sku: subject)
+        let vc = TransactionsVC(transactionVM: vm)
+        navigationController?.show(vc, sender: self)
     }
 }

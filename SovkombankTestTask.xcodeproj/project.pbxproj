@@ -19,6 +19,8 @@
 		2C5BBD0A2C4C67880034C04C /* rates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C5BBD092C4C67880034C04C /* rates.plist */; };
 		2C5BBD102C4C6D350034C04C /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BBD0F2C4C6D350034C04C /* ProductCell.swift */; };
 		2C5BBD152C4C73930034C04C /* ProductVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BBD142C4C73930034C04C /* ProductVM.swift */; };
+		2C5BBD172C4D2FEA0034C04C /* TransactionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BBD162C4D2FEA0034C04C /* TransactionsVC.swift */; };
+		2C5BBD192C4D39B90034C04C /* TransactionsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BBD182C4D39B90034C04C /* TransactionsVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		2C5BBD092C4C67880034C04C /* rates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = rates.plist; sourceTree = "<group>"; };
 		2C5BBD0F2C4C6D350034C04C /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		2C5BBD142C4C73930034C04C /* ProductVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVM.swift; sourceTree = "<group>"; };
+		2C5BBD162C4D2FEA0034C04C /* TransactionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsVC.swift; sourceTree = "<group>"; };
+		2C5BBD182C4D39B90034C04C /* TransactionsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,8 @@
 		2C5BBD132C4C73450034C04C /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				2C5BBD162C4D2FEA0034C04C /* TransactionsVC.swift */,
+				2C5BBD182C4D39B90034C04C /* TransactionsVM.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -222,11 +228,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C5BBCE52C4BB5E70034C04C /* ProductsVC.swift in Sources */,
+				2C5BBD192C4D39B90034C04C /* TransactionsVM.swift in Sources */,
 				2C5BBD032C4BE6910034C04C /* RatesModel.swift in Sources */,
 				2C5BBCFC2C4BE53C0034C04C /* DataManager.swift in Sources */,
 				2C5BBCE12C4BB5E70034C04C /* AppDelegate.swift in Sources */,
 				2C5BBD012C4BE6240034C04C /* TransactionsModel.swift in Sources */,
 				2C5BBD102C4C6D350034C04C /* ProductCell.swift in Sources */,
+				2C5BBD172C4D2FEA0034C04C /* TransactionsVC.swift in Sources */,
 				2C5BBD152C4C73930034C04C /* ProductVM.swift in Sources */,
 				2C5BBCE32C4BB5E70034C04C /* SceneDelegate.swift in Sources */,
 			);

@@ -19,7 +19,7 @@ final class ProductCell: UITableViewCell {
     func configureCell(showDisclosureType: Bool, primaryText: String, secondaryText: Int) {
         var config = defaultContentConfiguration()
         config.text = primaryText
-        config.secondaryText = "\(String(secondaryText)) transactions"
+        config.secondaryText = showDisclosureType ? "\(String(secondaryText)) transactions" : "\(String(secondaryText))"
         contentConfiguration = config
         accessoryType =  showDisclosureType ? .disclosureIndicator : .none
     }
