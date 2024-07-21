@@ -15,10 +15,11 @@ enum DataError: Error {
 }
 private struct K {
     static let fileExtension = "plist"
+    static let transactions = "transactions"
 }
 final class DataManager {
-    func getData(resource: String, completion: @escaping DataManagerResult) {
-        if let url = Bundle.main.url(forResource: resource, withExtension: K.fileExtension) {
+    func getProducts(completion: @escaping DataManagerResult) {
+        if let url = Bundle.main.url(forResource: K.transactions, withExtension: K.fileExtension) {
             do {
                 let decoder = PropertyListDecoder()
                 let data = try Data(contentsOf: url)
