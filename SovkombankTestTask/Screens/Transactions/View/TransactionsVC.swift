@@ -60,13 +60,13 @@ private extension TransactionsVC {
         transactionsTable.dataSource = self
     }
     func setupNavBar() {
-        title = transactionVM.sku
+        title = "\(Localization.transactionFor) \(transactionVM.sku)"
     }
 }
 //MARK: - UITableViewDataSource
 extension TransactionsVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "\(Localization.total) \(String(describing: transactionVM.calculateTotalAmount()))"
+        "\(Localization.total) \(Localization.gbp)\(String(describing: transactionVM.calculateTotalAmount()))"
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         transactionVM.transactions.count

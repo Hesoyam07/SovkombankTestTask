@@ -17,4 +17,5 @@ struct Localization {
     static let products = "Products".localized
     static let gbp = "GBP".localized
     static let total = "Total".localized
+    static let transactionFor = "TransactionsFor".localized
 }
