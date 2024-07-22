@@ -14,6 +14,7 @@ private struct K {
 final class TransactionsVC: UIViewController {
     
     private let transactionVM: TransactionsVM
+
     //MARK: Initialiser
     init(transactionVM: TransactionsVM) {
         self.transactionVM = transactionVM
@@ -32,7 +33,9 @@ final class TransactionsVC: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        transactionVM.getRates()
         transactionVM.currencyNameToSymbol()
+        transactionVM.convertTransactions()
         setupView()
         setupConstraints()
         setupTableViewProtocols()
@@ -63,18 +66,19 @@ private extension TransactionsVC {
 //MARK: - UITableViewDataSource
 extension TransactionsVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "Total amount"
+        "\(Localization.total) \(String(describing: transactionVM.calculateTotalAmount()))"
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        transactionVM.transactions.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: K.cellId, for: indexPath) as? ProductCell else {
             return UITableViewCell()
         }
         let primaryText = "\(transactionVM.currencies[indexPath.row]) \(transactionVM.transactions.map({$0.amount})[indexPath.row])"
-        cell.configureCell(showDisclosureType: false, primaryText: primaryText, secondaryText: 0)
-
+        let secondaryText = "\(Localization.gbp) \(transactionVM.convertedCurrencies[indexPath.row])"
+        cell.configureCell(showDisclosureType: false, primaryText: primaryText, secondaryText: secondaryText )
+        
         return cell
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        transactionVM.transactions.count
     }
 }

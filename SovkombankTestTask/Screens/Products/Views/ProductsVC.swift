@@ -23,7 +23,7 @@ final class ProductVC: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        productVM.getData()
+        productVM.getData(completion:{ self.productTable.reloadData()})
         setupView()
         setupConstraints()
         setupTableViewProtocols()
@@ -49,7 +49,7 @@ private extension ProductVC {
         productTable.delegate = self
     }
     func setupNavBar() {
-        title = "Products"
+        title = Localization.products
     }
 }
 //MARK: - UITableViewDataSource
@@ -59,7 +59,7 @@ extension ProductVC: UITableViewDataSource {
             return UITableViewCell()
         }
         let productKey = Array(productVM.products.keys.sorted())[indexPath.row]
-        let productValue = productVM.products[productKey]?.count ?? .zero
+        let productValue = String(productVM.products[productKey]?.count ?? .zero)
         cell.configureCell(showDisclosureType: true, primaryText: productKey, secondaryText: productValue)
         return cell
     }

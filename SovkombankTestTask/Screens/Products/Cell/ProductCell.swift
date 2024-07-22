@@ -16,10 +16,10 @@ final class ProductCell: UITableViewCell {
         super.init(coder: coder)
     }
     
-    func configureCell(showDisclosureType: Bool, primaryText: String, secondaryText: Int) {
+    func configureCell(showDisclosureType: Bool, primaryText: String, secondaryText: String) {
         var config = defaultContentConfiguration()
         config.text = primaryText
-        config.secondaryText = showDisclosureType ? "\(String(secondaryText)) transactions" : "\(String(secondaryText))"
+        config.secondaryText = showDisclosureType ? "\(String(secondaryText)) \(Localization.transacitons)" : "\(String(secondaryText))"
         contentConfiguration = config
         accessoryType =  showDisclosureType ? .disclosureIndicator : .none
     }

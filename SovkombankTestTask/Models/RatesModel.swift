@@ -7,8 +7,8 @@
 
 import UIKit
 
-struct RatesModel {
-    let fromCurrency: String
-    let toCurrency: String
+struct RatesModel: Decodable {
+    let from: String
     let rate: String
+    let to: String
 }
