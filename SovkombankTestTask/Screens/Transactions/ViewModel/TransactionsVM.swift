@@ -53,25 +53,26 @@ final class TransactionsVM {
                 completion(.failure(dataError))
             }
         }
-    }}
+    }
+}
 //MARK: - Private mehods
 private extension TransactionsVM {
     private func convertCurrencyToSymbol() {
-         let locale = Locale(identifier: K.localeIdentifier)
-         let formatter = NumberFormatter()
-         formatter.locale = locale
-         transactions.forEach({
-             let currencyCode = $0.currency
-             formatter.currencyCode = currencyCode
-             if let currencySymbol = formatter.currencySymbol {
-                 currencies.append(currencySymbol)
-             }
-         })
-     }
-     private func convertTransactions() {
-         transactions.forEach({
-             let currency = currencyConverter.convert(transaction: $0)
-             convertedCurrencies.append(currency)
-         })
-     }
+        let locale = Locale(identifier: K.localeIdentifier)
+        let formatter = NumberFormatter()
+        formatter.locale = locale
+        transactions.forEach({
+            let currencyCode = $0.currency
+            formatter.currencyCode = currencyCode
+            if let currencySymbol = formatter.currencySymbol {
+                currencies.append(currencySymbol)
+            }
+        })
+    }
+    private func convertTransactions() {
+        transactions.forEach({
+            let currency = currencyConverter.convert(transaction: $0)
+            convertedCurrencies.append(currency)
+        })
+    }
 }

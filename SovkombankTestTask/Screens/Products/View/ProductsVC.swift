@@ -52,7 +52,7 @@ private extension ProductVC {
         title = Localization.products
     }
     func showAlert(error: DataError) {
-        let alert = productVM.alertFabric.createAlert(title: error.localizedDescription, message: "")
+        let alert = productVM.alertFabric.createAlert(title: error.localizedDescription)
         navigationController?.present(alert, animated: true)
     }
     func getData() {

@@ -61,7 +61,7 @@ private extension TransactionsVC {
         title = "\(Localization.transactionFor) \(transactionVM.sku)"
     }
     func showAlert(error: DataError) {
-        let alert = transactionVM.alertFabric.createAlert(title: error.localizedDescription, message: "")
+        let alert = transactionVM.alertFabric.createAlert(title: error.localizedDescription)
         navigationController?.present(alert, animated: true)
     }
     func getRates() {

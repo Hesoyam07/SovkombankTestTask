@@ -8,7 +8,7 @@
 import UIKit
 
 struct AlertFabric {
-    func createAlert(title: String, message: String) -> UIAlertController {
+    func createAlert(title: String) -> UIAlertController {
         let alert = UIAlertController(title: title,
                                       message: nil,
                                       preferredStyle: .alert)
