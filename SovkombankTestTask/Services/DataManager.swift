@@ -7,39 +7,34 @@
 
 import UIKit
 
+typealias ProductResult = (Result<[TransactionModel], DataError>) -> Void
+typealias RateResult = (Result<[RatesModel], DataError>) -> Void
+typealias DataResult<T: Decodable> = (Result<[T], DataError>) -> Void
+
+//MARK: - Custom errors
 enum DataError: Error {
     case dataNotLoaded(description: String)
     case decodingFailure(description: String)
 }
+//MARK: - Constants
 private struct K {
     static let fileExtension = "plist"
-    static let transactions = "transactions"
-    static let rates = "rates"
-    static let decodingFailureDescription = "Decoding failure"
 }
+
 final class DataManager {
-    func getProducts(completion: @escaping (Result<[TransactionModel], DataError>) -> Void) {
-        if let url = Bundle.main.url(forResource: K.transactions, withExtension: K.fileExtension) {
-            do {
-                let decoder = PropertyListDecoder()
-                let data = try Data(contentsOf: url)
-                let transactions = try decoder.decode([TransactionModel].self, from: data)
-                completion(.success(transactions))
-            } catch {
-                completion(.failure(.decodingFailure(description: K.decodingFailureDescription)))
+//MARK: - Methods
+    func getData<T: Decodable>(resource: String, responseType: T.Type, completion: @escaping DataResult<T>) {
+            if let url = Bundle.main.url(forResource: resource, withExtension: K.fileExtension) {
+                do {
+                    let decoder = PropertyListDecoder()
+                    let data = try Data(contentsOf: url)
+                    let models = try decoder.decode([T].self, from: data)
+                    completion(.success(models))
+                } catch {
+                    completion(.failure(.decodingFailure(description: Localization.decodingFailureDescription)))
+                }
+            } else {
+                completion(.failure(.dataNotLoaded(description: Localization.dataNotLoadedFailureDescription)))
             }
         }
-    }
-    func getRates(completion: @escaping ((Result<[RatesModel], DataError>) -> Void)) {
-        if let url = Bundle.main.url(forResource: K.rates, withExtension: K.fileExtension) {
-            do {
-                let decoder = PropertyListDecoder()
-                let data = try Data(contentsOf: url)
-                let rates = try decoder.decode([RatesModel].self, from: data)
-                completion(.success(rates))
-            } catch {
-                completion(.failure(.decodingFailure(description: K.decodingFailureDescription)))
-            }
-        }
-    }
 }

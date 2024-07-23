@@ -14,32 +14,30 @@ private struct K {
 final class TransactionsVC: UIViewController {
     
     private let transactionVM: TransactionsVM
-
+    
     //MARK: Initialiser
     init(transactionVM: TransactionsVM) {
         self.transactionVM = transactionVM
         super.init(nibName: nil, bundle: nil)
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     //MARK: - UI
     private let transactionsTable: UITableView = {
-        let t = UITableView()
-        t.register(ProductCell.self, forCellReuseIdentifier: K.cellId)
-        return t
+        let table = UITableView()
+        table.register(ProductCell.self, forCellReuseIdentifier: K.cellId)
+        return table
     }()
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        transactionVM.getRates()
-        transactionVM.currencyNameToSymbol()
-        transactionVM.convertTransactions()
         setupView()
         setupConstraints()
         setupTableViewProtocols()
         setupNavBar()
+        getRates()
+        transactionVM.convertCurrencies()
     }
 }
 //MARK: - Private methods
@@ -61,6 +59,20 @@ private extension TransactionsVC {
     }
     func setupNavBar() {
         title = "\(Localization.transactionFor) \(transactionVM.sku)"
+    }
+    func showAlert(error: DataError) {
+        let alert = transactionVM.alertFabric.createAlert(title: error.localizedDescription, message: "")
+        navigationController?.present(alert, animated: true)
+    }
+    func getRates() {
+        transactionVM.getRates { [weak self] result in
+            switch result {
+            case .success(_):
+                self?.transactionsTable.reloadData()
+            case .failure(let dataError):
+                self?.showAlert(error: dataError)
+            }
+        }
     }
 }
 //MARK: - UITableViewDataSource

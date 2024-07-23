@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ProductVC.swift
 //  SovkombankTestTask
 //
 //  Created by Дмитрий on 20.07.2024.
@@ -16,18 +16,18 @@ final class ProductVC: UIViewController {
     private let productVM = ProductVM()
     //MARK: - UI
     private let productTable: UITableView = {
-        let t = UITableView()
-        t.register(ProductCell.self, forCellReuseIdentifier: K.cellId)
-        return t
+        let table = UITableView()
+        table.register(ProductCell.self, forCellReuseIdentifier: K.cellId)
+        return table
     }()
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        productVM.getData(completion:{ self.productTable.reloadData()})
         setupView()
         setupConstraints()
         setupTableViewProtocols()
         setupNavBar()
+        getData()
     }
 }
 //MARK: - Private methods
@@ -51,6 +51,20 @@ private extension ProductVC {
     func setupNavBar() {
         title = Localization.products
     }
+    func showAlert(error: DataError) {
+        let alert = productVM.alertFabric.createAlert(title: error.localizedDescription, message: "")
+        navigationController?.present(alert, animated: true)
+    }
+    func getData() {
+        productVM.getRates { [weak self] result in
+            switch result {
+            case .success(_):
+                self?.productTable.reloadData()
+            case .failure(let dataError):
+                self?.showAlert(error: dataError)
+            }
+        }
+    }
 }
 //MARK: - UITableViewDataSource
 extension ProductVC: UITableViewDataSource {
@@ -71,8 +85,8 @@ extension ProductVC: UITableViewDataSource {
 extension ProductVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let subject = Array(productVM.products.keys.sorted())[indexPath.row]
-        let vm = TransactionsVM(productVM: productVM, sku: subject)
-        let vc = TransactionsVC(transactionVM: vm)
+        let vm = TransactionVMFabric.createTransactionVM(with: productVM, and: subject)
+        let vc = TransactionVCFabric.createTransactionVC(viewModel: vm)
         navigationController?.show(vc, sender: self)
     }
 }

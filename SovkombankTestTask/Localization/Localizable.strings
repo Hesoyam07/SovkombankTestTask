@@ -11,4 +11,5 @@
 "Total" = "Total:";
 "GBP" = "£";
 "TransactionsFor" = "Transactions for";
-
+"Decoding failure" = "Decoding failure";
+"Resource not found" = "Resource not found";

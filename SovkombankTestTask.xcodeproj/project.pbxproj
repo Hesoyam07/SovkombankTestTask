@@ -24,6 +24,9 @@
 		2C5BBD1C2C4D7AA10034C04C /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BBD1B2C4D7AA10034C04C /* Localization.swift */; };
 		2C5BBD1E2C4D7AC10034C04C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C5BBD1D2C4D7AC10034C04C /* Localizable.strings */; };
 		2C5BBD212C4EC25E0034C04C /* CurrencyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BBD202C4EC25E0034C04C /* CurrencyConverter.swift */; };
+		2C5BBD252C4FD3AF0034C04C /* AlertFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BBD242C4FD3AF0034C04C /* AlertFabric.swift */; };
+		2C5BBD282C4FE86F0034C04C /* TransactionVCFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BBD272C4FE86F0034C04C /* TransactionVCFabric.swift */; };
+		2C5BBD2A2C4FE8BA0034C04C /* TransactionVMFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5BBD292C4FE8BA0034C04C /* TransactionVMFabric.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,9 @@
 		2C5BBD1B2C4D7AA10034C04C /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		2C5BBD1D2C4D7AC10034C04C /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		2C5BBD202C4EC25E0034C04C /* CurrencyConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverter.swift; sourceTree = "<group>"; };
+		2C5BBD242C4FD3AF0034C04C /* AlertFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFabric.swift; sourceTree = "<group>"; };
+		2C5BBD272C4FE86F0034C04C /* TransactionVCFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVCFabric.swift; sourceTree = "<group>"; };
+		2C5BBD292C4FE8BA0034C04C /* TransactionVMFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVMFabric.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,7 @@
 				2C5BBCEB2C4BB5E90034C04C /* LaunchScreen.storyboard */,
 				2C5BBCEE2C4BB5E90034C04C /* Info.plist */,
 				2C5BBCF82C4BE4F10034C04C /* Data */,
+				2C5BBD262C4FE7360034C04C /* Fabrics */,
 			);
 			path = SovkombankTestTask;
 			sourceTree = "<group>";
@@ -110,20 +117,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		2C5BBCFE2C4BE5780034C04C /* Views */ = {
+		2C5BBCFE2C4BE5780034C04C /* View */ = {
 			isa = PBXGroup;
 			children = (
 				2C5BBCE42C4BB5E70034C04C /* ProductsVC.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
-		2C5BBCFF2C4BE57E0034C04C /* ViewModels */ = {
+		2C5BBCFF2C4BE57E0034C04C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				2C5BBD142C4C73930034C04C /* ProductVM.swift */,
 			);
-			path = ViewModels;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		2C5BBD0E2C4C6D220034C04C /* Cell */ = {
@@ -146,9 +153,9 @@
 		2C5BBD122C4C73130034C04C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2C5BBCFF2C4BE57E0034C04C /* ViewModels */,
+				2C5BBCFF2C4BE57E0034C04C /* ViewModel */,
 				2C5BBD0E2C4C6D220034C04C /* Cell */,
-				2C5BBCFE2C4BE5780034C04C /* Views */,
+				2C5BBCFE2C4BE5780034C04C /* View */,
 			);
 			path = Products;
 			sourceTree = "<group>";
@@ -194,6 +201,16 @@
 				2C5BBD182C4D39B90034C04C /* TransactionsVM.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2C5BBD262C4FE7360034C04C /* Fabrics */ = {
+			isa = PBXGroup;
+			children = (
+				2C5BBD242C4FD3AF0034C04C /* AlertFabric.swift */,
+				2C5BBD272C4FE86F0034C04C /* TransactionVCFabric.swift */,
+				2C5BBD292C4FE8BA0034C04C /* TransactionVMFabric.swift */,
+			);
+			path = Fabrics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,6 +289,7 @@
 				2C5BBCE52C4BB5E70034C04C /* ProductsVC.swift in Sources */,
 				2C5BBD1C2C4D7AA10034C04C /* Localization.swift in Sources */,
 				2C5BBD192C4D39B90034C04C /* TransactionsVM.swift in Sources */,
+				2C5BBD252C4FD3AF0034C04C /* AlertFabric.swift in Sources */,
 				2C5BBD032C4BE6910034C04C /* RatesModel.swift in Sources */,
 				2C5BBCFC2C4BE53C0034C04C /* DataManager.swift in Sources */,
 				2C5BBCE12C4BB5E70034C04C /* AppDelegate.swift in Sources */,
@@ -280,6 +298,8 @@
 				2C5BBD172C4D2FEA0034C04C /* TransactionsVC.swift in Sources */,
 				2C5BBD152C4C73930034C04C /* ProductVM.swift in Sources */,
 				2C5BBD212C4EC25E0034C04C /* CurrencyConverter.swift in Sources */,
+				2C5BBD2A2C4FE8BA0034C04C /* TransactionVMFabric.swift in Sources */,
+				2C5BBD282C4FE86F0034C04C /* TransactionVCFabric.swift in Sources */,
 				2C5BBCE32C4BB5E70034C04C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +447,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,6 +476,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
