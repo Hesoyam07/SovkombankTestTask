@@ -22,19 +22,19 @@ private struct K {
 }
 
 final class DataManager {
-//MARK: - Methods
+    //MARK: - Methods
     func getData<T: Decodable>(resource: String, responseType: T.Type, completion: @escaping DataResult<T>) {
-            if let url = Bundle.main.url(forResource: resource, withExtension: K.fileExtension) {
-                do {
-                    let decoder = PropertyListDecoder()
-                    let data = try Data(contentsOf: url)
-                    let models = try decoder.decode([T].self, from: data)
-                    completion(.success(models))
-                } catch {
-                    completion(.failure(.decodingFailure(description: Localization.decodingFailureDescription)))
-                }
-            } else {
-                completion(.failure(.dataNotLoaded(description: Localization.dataNotLoadedFailureDescription)))
+        if let url = Bundle.main.url(forResource: resource, withExtension: K.fileExtension) {
+            do {
+                let decoder = PropertyListDecoder()
+                let data = try Data(contentsOf: url)
+                let models = try decoder.decode([T].self, from: data)
+                completion(.success(models))
+            } catch {
+                completion(.failure(.decodingFailure(description: Localization.decodingFailureDescription)))
             }
+        } else {
+            completion(.failure(.dataNotLoaded(description: Localization.dataNotLoadedFailureDescription)))
         }
+    }
 }

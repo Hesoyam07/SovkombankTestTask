@@ -39,9 +39,9 @@ final class TransactionsVM {
         convertTransactions()
         convertCurrencyToSymbol()
     }
-    func calculateTotalAmount() -> Float {
-        let sum = convertedCurrencies.map { Float($0) ?? .zero}.reduce(0, +)
-        return sum
+    func calculateTotalAmount() -> String {
+        let sum = convertedCurrencies.compactMap { Double($0) }.reduce(0, +)
+        return String(format: "%.2f", sum)
     }
     func getRates(completion: @escaping RateResult) {
         dataManager.getData(resource: K.ratesResource, responseType: RatesModel.self) { result in
