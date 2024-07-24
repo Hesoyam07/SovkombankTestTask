@@ -56,12 +56,13 @@ private extension TransactionsVC {
     }
     func setupTableViewProtocols() {
         transactionsTable.dataSource = self
+        transactionsTable.delegate = self
     }
     func setupNavBar() {
         title = "\(Localization.transactionFor) \(transactionVM.sku)"
     }
     func showAlert(error: DataError) {
-        let alert = transactionVM.alertFabric.createAlert(title: error.localizedDescription)
+        let alert = AlertFactory.createAlert(title: error.localizedDescription)
         navigationController?.present(alert, animated: true)
     }
     func getRates() {
@@ -92,5 +93,11 @@ extension TransactionsVC: UITableViewDataSource {
         cell.configureCell(showDisclosureType: false, primaryText: primaryText, secondaryText: secondaryText )
         
         return cell
+    }
+}
+//MARK: - UITableViewDelegate
+extension TransactionsVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

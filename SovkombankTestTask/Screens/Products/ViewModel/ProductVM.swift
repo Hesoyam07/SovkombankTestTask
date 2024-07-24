@@ -11,9 +11,6 @@ private struct K {
 }
 final class ProductVM {
     
-    var alertFabric: AlertFabric {
-        AlertFabric()
-    }
     private let dataManager = DataManager()
     private(set) var products = [String: [TransactionModel]]()
     

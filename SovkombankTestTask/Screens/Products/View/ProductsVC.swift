@@ -52,7 +52,7 @@ private extension ProductVC {
         title = Localization.products
     }
     func showAlert(error: DataError) {
-        let alert = productVM.alertFabric.createAlert(title: error.localizedDescription)
+        let alert = AlertFactory.createAlert(title: error.localizedDescription)
         navigationController?.present(alert, animated: true)
     }
     func getData() {
@@ -85,8 +85,7 @@ extension ProductVC: UITableViewDataSource {
 extension ProductVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let subject = Array(productVM.products.keys.sorted())[indexPath.row]
-        let vm = TransactionVMFabric.createTransactionVM(with: productVM, and: subject)
-        let vc = TransactionVCFabric.createTransactionVC(viewModel: vm)
+        let vc = TransactionVCFactory.createTransactionVC(with: productVM, and: subject)
         navigationController?.show(vc, sender: self)
     }
 }

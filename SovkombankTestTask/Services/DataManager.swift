@@ -8,7 +8,7 @@
 import UIKit
 
 typealias ProductResult = (Result<[TransactionModel], DataError>) -> Void
-typealias RateResult = (Result<[RatesModel], DataError>) -> Void
+typealias RateResult = (Result<[Void], DataError>) -> Void
 typealias DataResult<T: Decodable> = (Result<[T], DataError>) -> Void
 
 //MARK: - Custom errors

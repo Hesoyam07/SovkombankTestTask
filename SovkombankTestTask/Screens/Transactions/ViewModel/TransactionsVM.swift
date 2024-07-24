@@ -16,9 +16,6 @@ final class TransactionsVM {
     
     //MARK: - Properties
     let sku: String
-    var alertFabric: AlertFabric {
-        AlertFabric()
-    }
     private let dataManager = DataManager()
     private(set) var rates = [RatesModel]()
     private(set) var convertedCurrencies = [String]()
@@ -48,7 +45,6 @@ final class TransactionsVM {
             switch result {
             case .success(let rates):
                 self.rates = rates
-                completion(.success(rates))
             case .failure(let dataError):
                 completion(.failure(dataError))
             }
