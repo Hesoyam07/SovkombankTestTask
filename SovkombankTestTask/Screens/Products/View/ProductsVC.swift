@@ -84,6 +84,7 @@ extension ProductVC: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 extension ProductVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let subject = Array(productVM.products.keys.sorted())[indexPath.row]
         let vc = TransactionVCFactory.createTransactionVC(with: productVM, and: subject)
         navigationController?.show(vc, sender: self)

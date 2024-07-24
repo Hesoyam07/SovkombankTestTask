@@ -6,16 +6,13 @@
 //
 
 import UIKit
-private struct K {
-    static let alertOkMessage = "OK"
-}
 
 struct AlertFactory {
     static func createAlert(title: String) -> UIAlertController {
         let alert = UIAlertController(title: title,
                                       message: nil,
                                       preferredStyle: .alert)
-        let action = UIAlertAction(title: K.alertOkMessage, style: .default)
+        let action = UIAlertAction(title: Localization.alertOkMessage, style: .default)
         alert.addAction(action)
         return alert
     }
